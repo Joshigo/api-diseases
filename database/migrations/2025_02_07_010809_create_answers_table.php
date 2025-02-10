@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('questions');
+            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
             $table->foreignId('patient_id')->constrained('patients');
             $table->boolean('response');
             $table->timestamps();
