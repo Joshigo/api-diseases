@@ -66,36 +66,6 @@ class PatientsSeeder extends Seeder
                 'long' => -67.429,
                 'percentage' => 70.2,
             ],
-            [
-                'name' => 'Pedro',
-                'last_name' => 'Sanchez',
-                'ci' => '99887766',
-                'phone' => '04141234568',
-                'age' => 32,
-                'lat' => 9.7489,
-                'long' => -63.1533,
-                'percentage' => 85.0,
-            ],
-            [
-                'name' => 'Laura',
-                'last_name' => 'Fernandez',
-                'ci' => '88776655',
-                'phone' => '04147654322',
-                'age' => 27,
-                'lat' => 10.3910,
-                'long' => -71.4693,
-                'percentage' => 78.4,
-            ],
-            [
-                'name' => 'Jose',
-                'last_name' => 'Rodriguez',
-                'ci' => '77665544',
-                'phone' => '04141231235',
-                'age' => 45,
-                'lat' => 8.3178,
-                'long' => -62.7113,
-                'percentage' => 60.7,
-            ],
         ];
 
         foreach ($patients as $patient) {

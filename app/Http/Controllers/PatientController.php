@@ -8,12 +8,23 @@ use Illuminate\Support\Facades\Validator;
 
 class PatientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Patient::all();
+        $query = Patient::query();
+
+        if ($request->has('ci')) {
+            $query->where('ci', $request->input('ci'));
+        }
+
+        if ($request->has('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        $data = $query->get();
 
         return response()->json($data);
     }
+
 
     public function store(Request $request)
     {
