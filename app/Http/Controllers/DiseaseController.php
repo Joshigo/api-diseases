@@ -12,6 +12,14 @@ class DiseaseController extends Controller
     {
         $data = Disease::with('questions')->get();
 
+        foreach ($data as $disease) {
+            $questions = $disease->questions;
+            $total = count($questions);
+            foreach ($questions as $idx => $question) {
+                $question->name .= ' ' . ($idx + 1) . '/' . $total;
+            }
+        }
+
         return response()->json($data);
     }
 

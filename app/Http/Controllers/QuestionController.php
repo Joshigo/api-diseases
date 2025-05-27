@@ -12,6 +12,10 @@ class QuestionController extends Controller
     {
         $data = Question::all();
 
+        foreach ($data as $idx => $question) {
+            $question->name .= ' ' . ($idx + 1) . '/' . count($data);
+        }
+
         return response()->json($data);
     }
 
