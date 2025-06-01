@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -68,5 +69,16 @@ class PatientController extends Controller
         $patient->save();
 
         return response()->json(['message' => 'Location set successfully']);
+    }
+
+    public function show($id)
+    {
+        try {
+            $patient = Patient::with(['answers.question'])->findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Patient not found'], 422);
+        }
+
+        return response()->json($patient, 200);
     }
 }
