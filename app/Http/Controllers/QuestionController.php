@@ -10,13 +10,6 @@ class QuestionController extends Controller
 {
     public function index(Request $request)
     {
-        $adminPassParam = $request->query('adminpass');
-        $adminPassEnv = env('ADMIN_PASS');
-
-        if ($adminPassParam !== $adminPassEnv || !$adminPassParam) {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
         $data = Question::all();
 
         foreach ($data as $idx => $question) {
@@ -54,5 +47,23 @@ class QuestionController extends Controller
         $question->delete();
 
         return response()->json(['message' => 'Question deleted successfully'], 200);
+    }
+
+    public function questionsAdmin(Request $request)
+    {
+        $adminPassParam = $request->query('adminpass');
+        $adminPassEnv = env('ADMIN_PASS');
+
+        if ($adminPassParam !== $adminPassEnv || !$adminPassParam) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $data = Question::all();
+
+        foreach ($data as $idx => $question) {
+            $question->name .= ' ' . ($idx + 1) . '/' . count($data);
+        }
+
+        return response()->json($data);
     }
 }

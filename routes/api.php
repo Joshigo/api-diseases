@@ -31,3 +31,5 @@ Route::apiResources([
     'patients' => PatientController::class,
     'answers' => AnswerController::class,
 ]);
+
+Route::get('/questionsAdmin', [QuestionController::class, 'questionsAdmin']);
